@@ -126,9 +126,11 @@
                     location: {
                         required: "请选择您所在的城市"
                     },
+/*
                     identity: {
                         required: "请选择您的身份"
                     },
+*/
                     detailAddress: {
                         required: "请填写您的详细地址"
                     },
@@ -210,11 +212,12 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">身份:</label>
             <div class="col-sm-5">
-                <input type="radio" name="identity" id="student" value="学生" checked> 学生&nbsp&nbsp
-                <input type="radio" name="identity" id="teacher" value="教师"> 教师&nbsp&nbsp
-                <input type="radio" name="identity" id="worker" value="上班族"> 上班族&nbsp&nbsp
+                <input type="radio" name="identity" id="student" value="用户" checked> 用户&nbsp&nbsp
+                <input type="radio" name="identity" id="teacher" value="商家"> 商家&nbsp&nbsp
+                <input type="radio" name="identity" id="other" value="其他"> 其他&nbsp&nbsp
+                <%--<input type="radio" name="identity" id="worker" value="上班族"> 上班族&nbsp&nbsp
                 <input type="radio" name="identity" id="liberal" value="自由职业"> 自由职业&nbsp
-                <input type="radio" name="identity" id="administrators" value="管理员"> 系统管理员&nbsp&nbsp
+                <input type="radio" name="identity" id="administrators" value="管理员"> 系统管理员&nbsp&nbsp--%>
             </div>
             <span class="red"></span>
         </div>

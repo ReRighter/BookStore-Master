@@ -2,8 +2,13 @@ package org.zdd.bookstore.web.controller;
 
 import org.zdd.bookstore.common.pojo.BSResult;
 import org.zdd.bookstore.common.utils.BSResultUtil;
+import org.zdd.bookstore.common.utils.IpUntils;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
+import org.zdd.bookstore.model.entity.LoginRecord;
+import org.zdd.bookstore.model.entity.LogoutRecord;
 import org.zdd.bookstore.model.entity.Store;
 import org.zdd.bookstore.model.entity.User;
+import org.zdd.bookstore.model.service.ILoginRecordService;
 import org.zdd.bookstore.model.service.IMailService;
 import org.zdd.bookstore.model.service.IStoreService;
 import org.zdd.bookstore.model.service.IUserService;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.zdd.bookstore.model.service.impl.LogoutRecordImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,6 +46,10 @@ public class UserController {
 
     @Autowired
     private IStoreService storeService;
+    @Autowired
+    private ILoginRecordService loginRecordService;
+    @Autowired
+    private LogoutRecordImpl logoutRecord;
 
     @Value("${mail.fromMail.addr}")
     private String from;
@@ -72,7 +82,12 @@ public class UserController {
                 request.getSession().setAttribute("loginUser", loginUser);
                 Store store = storeService.findStoreByUserId(loginUser.getUserId());
                 request.getSession().setAttribute("loginStore", store);
+                LoginRecord record = new LoginRecord();
 
+                String ip = IpUntils.getClientIpAddr(request);
+                record.setLoginIp(ip);
+                record.setUseId(loginUser.getUserId());
+                loginRecordService.saveRecord(record);
 
                 SavedRequest savedRequest = WebUtils.getSavedRequest(request);
                 String url = "/";
@@ -144,8 +159,16 @@ public class UserController {
     //shiro框架帮我们注销
     @RequestMapping("/logout")
     @CacheEvict(cacheNames="authorizationCache",allEntries = true)
-    public String logout() {
-        SecurityUtils.getSubject().logout();
+    public String logout(HttpServletRequest request) {
+
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        System.out.println("test:"+user.getUsername()+user.getUserId());
+        LogoutRecord record = new LogoutRecord();
+        record.setLogoutIp(IpUntils.getClientIpAddr(request));
+        record.setUserId(user.getUserId());
+        logoutRecord.saveRecord(record);
+        subject.logout();
         return "redirect:/page/login";
     }
 
@@ -217,6 +240,7 @@ public class UserController {
 
     @RequestMapping("/update")
     @ResponseBody
+    @OperLogAnnotation(operType = "userUpdate-")
     public BSResult updateUser(User user, HttpSession session){
         User loginUser = (User) session.getAttribute("loginUser");
         loginUser.setNickname(user.getNickname());

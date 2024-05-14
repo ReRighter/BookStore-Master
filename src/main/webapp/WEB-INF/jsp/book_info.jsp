@@ -43,6 +43,27 @@
                 }
             });
         });
+        window.addEventListener("load",function (){
+            if(sessionStorage.getItem("flag")){ //页面刷新时,不重新计时
+                return;
+            }
+            let nowTime = new Date().getTime();
+            sessionStorage.setItem("nowTime",JSON.stringify(nowTime));
+            sessionStorage.setItem("flag",true);
+        })
+        window.addEventListener("beforeunload",function (){
+            let endTime =new Date().getTime();
+            let startTime = sessionStorage.getItem("nowTime");
+            let visitTime = endTime -  (Number)(JSON.parse(startTime));
+            $.ajax({
+                type: "GET",
+                url: "book/info/saveRecord",
+                data: {"time":visitTime},
+                success: function (){
+                    console.log("visit record save succeed");
+                }
+            })
+        })
 
         function buyNow(bookId) {
             location.href =  "<%=basePath%>" + "order/info?bookId=" + bookId + "&buyNum=" + $("#buy_num").val();
@@ -51,6 +72,8 @@
         function addCart(bookId) {
             location.href = "<%=basePath%>" + "cart/addition?bookId=" + bookId + "&buyNum=" + $("#buy_num").val();
         }
+
+
     </script>
 </head>
 
@@ -58,17 +81,9 @@
 
 <jsp:include page="header.jsp"/>
 
-<!--
-    作者：offline
-    时间：2018-10-26
-    描述：商品详情
--->
+
 <div class="container">
-    <div class="row" style="border-bottom:1px dashed #CCCCCC;margin-bottom:15px ;">
-        <a href="#">
-            <img src="img/1.jpg"/>
-        </a>
-    </div>
+
     <div class="row" id="breadcrumb" style="margin-bottom:40px" ;>
         <a href="index" target="_blank">
             <b>图书</b>
@@ -82,7 +97,7 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 400px;">
             <div>
                 <a href="book/info/${bookInfo.bookId}">
-                    <img src="${bookInfo.imageUrl}" width="290px" height="290px"/>
+                    <img src="${bookInfo.imageUrl}" width="200px" height="200px"/>
                 </a>
             </div>
         </div>
@@ -140,7 +155,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="product_left">
-                <h3 style="">浏览此商品的顾客也同时浏览</h3>
+                <h3 style="">图书推荐</h3>
                 <ul class="product_left_ul">
 
                     <c:forEach items="${recommendBookList}" var="recommendBook">
@@ -213,45 +228,20 @@
                                 <pre>${bookInfo.author}</pre>
                             </blockquote>
                         </div>
-                        <div class="content" class="section">
+                        <%--<div class="content" class="section">
                             <div class="title">
                                 <span class="title_span">目　　录</span>
                             </div>
                             <blockquote>
                                 <pre>${bookInfo.catalog}</pre>
                             </blockquote>
-                        </div>
-                        <%--	<div id="authorIntroduction" class="section">
-                                <div class="title">
-                                    <span class="title_span">免费在线阅读</span>
-                                </div>
-                                <blockquote>
-                                    <pre>
-                                题梅
-宋·王柏
-万物正摇落，
-梅花独可人。
-空中三五点，
-天地便精神。
-末两句，极见精神。
-今日小寒。一年里倒数第二个节气。小寒三候：一候雁
-北乡，二候鹊始巢，三候雉始雊。传统的“二十四番花信风”，也从小寒节气开始数起，分别是：一候梅花，二候山茶，三候水仙。所以今天读这首梅花小诗。
-“二十四番花信风”，名单互有差异。现存最早完整的，见于明王逵《蠡海集· 气候类》：“小寒 ：一候梅花，二候山茶，三候水仙 ；大寒 ：一候瑞香，二候兰花，三候山矾；立春：一候迎春，二候樱桃，三候望春 ；雨水 ：一候菜花，二候杏花，三候李花 ；惊蛰 ：一候桃花，二候棣棠，三候蔷薇 ；春分 ：一候海棠，二候梨花，三候木兰 ；清明 ：一候桐花，二候麦花，三候柳花 ；谷雨 ：一候牡丹，二候酴醿，三候楝花。”
-画梅二首其二
-明·怀渭
-折得江南春，
-怅望洛阳客。
-悠悠岁年暮，
-浩浩风尘隔。
-远道勿相思，
-                            </pre>
-                                </blockquote>
-                            </div>--%>
+                        </div>--%>
+
                     </div>
                 </div>
-                <div id="book_comment_content" style="display: none;" class="nav_content">
+                <%--<div id="book_comment_content" style="display: none;" class="nav_content">
                     商品评论
-                </div>
+                </div>--%>
             </div>
         </div>
 

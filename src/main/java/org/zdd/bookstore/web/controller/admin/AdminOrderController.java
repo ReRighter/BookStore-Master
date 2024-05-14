@@ -2,6 +2,7 @@ package org.zdd.bookstore.web.controller.admin;
 
 import org.zdd.bookstore.common.pojo.BSResult;
 import org.zdd.bookstore.common.utils.BSResultUtil;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.entity.OrderShipping;
 import org.zdd.bookstore.model.entity.Orders;
 import org.zdd.bookstore.model.entity.Store;
@@ -35,6 +36,7 @@ public class AdminOrderController {
 
     @RequestMapping("/list")
     @RequiresPermissions("order-list")
+    @OperLogAnnotation(operType = "query-all-orders:")
     public String orderList(HttpServletRequest request){
 
         Store loginStore = (Store) request.getSession().getAttribute("loginStore");
@@ -53,6 +55,7 @@ public class AdminOrderController {
      */
     @RequestMapping("/toUpdate/{orderId}")
     @RequiresPermissions("order-edit")
+    @OperLogAnnotation(operType = "query-order:")
     public String updateOrder(@PathVariable("orderId") String orderId, Model model) {
 
         OrderCustom orderCustom = orderService.findOrderCustomById(orderId);
@@ -65,6 +68,7 @@ public class AdminOrderController {
 
     @RequestMapping("/update")
     @RequiresPermissions("order-edit")
+    @OperLogAnnotation(operType = "edit-order:")
     public String updateOrder(Orders order, OrderShipping orderShipping, Model model) {
 
         OrderCustom orderCustom = new OrderCustom();
@@ -77,6 +81,7 @@ public class AdminOrderController {
 
     @RequestMapping("/deletion/{orderId}")
     @RequiresPermissions("order-delete")
+    @OperLogAnnotation(operType = "delete-order:")
     public String deletion(@PathVariable("orderId") String orderId) {
 
         BSResult bsResult = orderService.deleteOrder(orderId);
@@ -94,6 +99,7 @@ public class AdminOrderController {
      */
     @RequiresPermissions("order-edit")
     @RequestMapping("/post/{orderId}")
+    @OperLogAnnotation(operType = "post-order:")
     public String postOrder(@PathVariable("orderId") String orderId){
         BSResult bsResult =  orderService.postOrder(orderId);
         if (bsResult.getCode() == 200) {

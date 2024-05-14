@@ -23,8 +23,8 @@
         $(function () {
             jQuery.validator.addMethod("isMobile", function(value, element) {
                 var length = value.length;
-                var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
-                return this.optional(element) || (length == 11 && mobile.test(value));
+                /*var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;*/
+                 return this.optional(element) || length===11;//|| (length == 11 && mobile.test(value))
             }, "请正确填写手机号码");
 
             $("#storeForm").validate({
@@ -116,13 +116,13 @@
             <span></span>
         </div>
 
-        <div class="form-group">
+        <%--<div class="form-group">
             <label for="created" class="col-sm-2 control-label" style="padding-left: 0">开店日期：</label>
             <div class="col-sm-5">
                 <span id="created"><fmt:formatDate value='${store.created}' pattern='yyyy-MM-dd'/></span>
             </div>
             <span></span>
-        </div>
+        </div>--%>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">

@@ -2,6 +2,7 @@ package org.zdd.bookstore.web.controller.admin;
 
 import org.zdd.bookstore.common.pojo.BSResult;
 import org.zdd.bookstore.common.pojo.ZTreeNode;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.entity.Privilege;
 import org.zdd.bookstore.model.service.IPrivilegeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -45,6 +46,7 @@ public class PrivilegeController {
 
     @RequestMapping("/toEdit/{roleId}")
     @RequiresPermissions("privilege-edit")
+    @OperLogAnnotation(operType = "edit-role:")
     public String toEditPrivilege(@PathVariable("roleId") int roleId,Model model){
         model.addAttribute("roleId", roleId);
         return "admin/privilege/edit";

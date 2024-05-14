@@ -29,7 +29,7 @@
                     text: '图书总销售额条形图'
                 },
                 subtitle: {
-                    text: '数据来源: dd.com'
+                    text: ''
                 },
                 xAxis: {
                     categories: data.bookNames,

@@ -35,7 +35,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -67,7 +70,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- mybatis分页擦件 -->
+        <!-- mybatis分页 -->
         <!--pagehelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>

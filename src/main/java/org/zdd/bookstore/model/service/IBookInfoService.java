@@ -13,6 +13,8 @@ public interface IBookInfoService {
 
     List<BookInfo> findBookListByCateId(int cateId, int currentPage, int pageSize);
 
+    List<BookInfo> getRecommendBooks(int userId, int currentPage, int pageSize);
+
     BookInfo findById(Integer bookId) throws BSException;
 
     PageInfo<BookInfo> findBookListByCondition(String keywords, int cateId, int page, int pageSize,int storeId);

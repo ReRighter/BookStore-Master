@@ -5,6 +5,7 @@ import org.zdd.bookstore.model.entity.Role;
 import org.zdd.bookstore.model.entity.User;
 import org.zdd.bookstore.model.entity.custom.OrderCustom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,4 +23,8 @@ public interface CustomMapper {
     List<Privilege> findPrivilegesByRoleId(int roleId);
 
     List<User> findBusinesses(int roleId);
+
+    List<Integer> findMostPurchaseCateByUserId(int userId);
+
+    List<Integer> findMostViewCategoryByUserId(int userId);
 }

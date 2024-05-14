@@ -11,6 +11,7 @@ import org.zdd.bookstore.exception.BSException;
 import org.zdd.bookstore.model.dao.BookCategoryMapper;
 import org.zdd.bookstore.model.dao.BookDescMapper;
 import org.zdd.bookstore.model.dao.BookInfoMapper;
+import org.zdd.bookstore.model.dao.custom.CustomMapper;
 import org.zdd.bookstore.model.entity.BookDesc;
 import org.zdd.bookstore.model.entity.BookInfo;
 import org.zdd.bookstore.model.service.IBookInfoService;
@@ -44,6 +45,8 @@ public class BookInfoServiceImpl implements IBookInfoService {
 
     @Autowired
     private BookCategoryMapper categoryMapper;
+    @Autowired
+    private CustomMapper customMapper;
 
 
     @Override
@@ -56,6 +59,19 @@ public class BookInfoServiceImpl implements IBookInfoService {
         criteria.andEqualTo("bookCategoryId", cateId);
         criteria.andEqualTo("isShelf", 1);
         bookInfoExample.setOrderByClause("deal_mount DESC,look_mount DESC");
+        List<BookInfo> books = bookInfoMapper.selectByExample(bookInfoExample);
+        PageInfo<BookInfo> pageInfo = new PageInfo<>(books);
+        return pageInfo.getList();
+    }
+    @Override
+    public List<BookInfo> getRecommendBooks(int userId, int currentPage, int pageSize){
+        PageHelper.startPage(currentPage, pageSize);
+        Example bookInfoExample = new Example(BookInfo.class);
+        Example.Criteria criteria = bookInfoExample.createCriteria();
+        List<Integer> recommendCate = new ArrayList<Integer>();
+        recommendCate.add( customMapper.findMostPurchaseCateByUserId(userId).get(0));
+        recommendCate.add( customMapper.findMostViewCategoryByUserId(userId).get(0));
+        criteria.andIn("bookCategoryId",recommendCate);
         List<BookInfo> books = bookInfoMapper.selectByExample(bookInfoExample);
         PageInfo<BookInfo> pageInfo = new PageInfo<>(books);
         return pageInfo.getList();

@@ -2,6 +2,7 @@ package org.zdd.bookstore.web.controller.admin;
 
 import org.zdd.bookstore.common.pojo.Bar;
 import org.zdd.bookstore.common.pojo.Pie;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.entity.Store;
 import org.zdd.bookstore.model.service.IBookInfoService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -26,6 +27,7 @@ public class ReportController {
      * @return
      */
     @RequestMapping("/views/pie")
+    @OperLogAnnotation(operType = "query-report-pie:")
     public List<Pie> getBookViewsPieJson(HttpSession session){
         Store loginStore = (Store) session.getAttribute("loginStore");
         if(loginStore == null){
@@ -35,6 +37,7 @@ public class ReportController {
     }
 
     @RequestMapping("/sales/bar")
+    @OperLogAnnotation(operType = "query-report-bar:")
     public Bar getBookSalesBarJson(HttpSession session){
         Store loginStore = (Store) session.getAttribute("loginStore");
         if(loginStore == null){

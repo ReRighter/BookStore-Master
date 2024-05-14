@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zdd.bookstore.common.utils.IDUtils;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.exception.BSException;
 import org.zdd.bookstore.model.dao.BookDescMapper;
 import org.zdd.bookstore.model.entity.BookDesc;
@@ -51,6 +52,7 @@ public class AdminBookController {
 
     @RequestMapping("/addition")
     @RequiresPermissions("book-add")
+    @OperLogAnnotation(operType = "add-book:")
     public String addBook(BookInfo bookInfo, String bookDesc, MultipartFile pictureFile, HttpServletRequest request) throws Exception {
 
         uploadPicture(bookInfo, pictureFile, request);
@@ -61,6 +63,7 @@ public class AdminBookController {
 
     @RequestMapping(value = "/list")
     @RequiresPermissions("book-query")
+    @OperLogAnnotation(operType = "query-book:")
     public String bookList(@RequestParam(defaultValue = "", required = false) String keywords,
                            @RequestParam(value = "page", defaultValue = "1", required = false) int page,
                            HttpSession session,
@@ -105,6 +108,7 @@ public class AdminBookController {
 
     @RequestMapping("/update")
     @RequiresPermissions("book-edit")
+    @OperLogAnnotation(operType = "book-edit:")
     public String updateBook(BookInfo bookInfo, String bookDesc, String keywords, MultipartFile pictureFile, HttpServletRequest request, RedirectAttributes ra) throws Exception {
         uploadPicture(bookInfo, pictureFile, request);
         BookInfo originBook = bookInfoService.findById(bookInfo.getBookId());
@@ -121,6 +125,7 @@ public class AdminBookController {
 
     @RequestMapping("/deletion/{bookId}")
     @RequiresPermissions("book-delete")
+    @OperLogAnnotation(operType = "delete-book:")
     public String deletion(@PathVariable("bookId") int bookId, String keywords, RedirectAttributes ra, HttpServletRequest request) throws BSException {
         BookInfo bookInfo = bookInfoService.findById(bookId);
         String realPath = request.getServletContext().getRealPath("/");

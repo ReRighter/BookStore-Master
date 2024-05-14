@@ -50,9 +50,6 @@ public class User implements Serializable {
     @Column(name = "active")
     private String active;
 
-    /**
-     * 用户激活码
-     */
     @Column(name = "code")
     private String code;
 

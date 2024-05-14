@@ -65,11 +65,9 @@
                         <img src="img/lunbo3.jpg" alt="Third slide">
                     </div>
                     <div class="item">
-                        <img src="img/lunbo4.jpg" alt="Third slide">
+                        <img src="img/lunbo4.jpg" alt="Fourth slide">
                     </div>
-                    <div class="item">
-                        <img src="img/lunbo5.jpg" alt="Third slide">
-                    </div>
+                  \
                 </div>
                 <!-- 轮播（Carousel）导航 -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -111,23 +109,11 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="width: 17.5%;height: 100%; padding: 0;">
             <div class="news">
                 <p class="title">最新动态</p>
-                <%--<ul>
-                    <li>要买好书，就来东东</li>
-                    <li>今日特惠，5折抢购</li>
-                    <li>满100减50</li>
-                    <li>满300减150</li>
-                    <li>满400减210</li>
-                </ul>--%>
+
             </div>
             <div class="hot_book">
                 <p class="title">新书热卖</p>
-                <%--<ul>
-                    <li>要买好书，就来东东</li>
-                    <li>今日特惠，5折抢购</li>
-                    <li>满100减50</li>
-                    <li>满300减150</li>
-                    <li>满400减210</li>
-                </ul>--%>
+
             </div>
         </div>
     </div>
@@ -160,13 +146,7 @@
         <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12" style="width: 17.5%;padding: 0;padding-top:20px ;">
             <div class="hot_book">
                 <p class="title">畅销图书</p>
-                <%--<ul>
-                    <li>要买好书，就来东东</li>
-                    <li>今日特惠，5折抢购</li>
-                    <li>满100减50</li>
-                    <li>满300减150</li>
-                    <li>满400减210</li>
-                </ul>--%>
+
             </div>
         </div>
     </div>

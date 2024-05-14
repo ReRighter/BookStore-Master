@@ -1,5 +1,6 @@
 package org.zdd.bookstore.web.controller.admin;
 
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.entity.Store;
 import org.zdd.bookstore.model.entity.User;
 import org.zdd.bookstore.model.service.IStoreService;
@@ -32,6 +33,7 @@ public class StoreController {
 
     @RequestMapping("/list")
     @RequiresPermissions("store-list")
+    @OperLogAnnotation(operType = "query-all-store:")
     public String storeList(Model model){
 
         List<Store> stores = storeService.findStores();
@@ -43,6 +45,7 @@ public class StoreController {
 
     @GetMapping("/toAddition")
     @RequiresPermissions("store-add")
+    @OperLogAnnotation(operType = "add-store:")
     public String addStore(Model model){
         List<User> users = userService.findBusinesses(Integer.parseInt(business));
         model.addAttribute("users", users);
@@ -52,6 +55,7 @@ public class StoreController {
 
     @RequestMapping("/{storeId}")
     @RequiresPermissions("store-edit")
+    @OperLogAnnotation(operType = "edit-store:")
     public String toEdit(@PathVariable("storeId") int storeId, Model model){
 
         Store store = storeService.findById(storeId);
@@ -74,6 +78,7 @@ public class StoreController {
 
     @RequestMapping("/deletion/{storeId}")
     @RequiresPermissions("store-delete")
+    @OperLogAnnotation(operType = "delete-store:")
     public String deleteStore(@PathVariable("storeId") int storeId){
         storeService.deleteStore(storeId);
         return "redirect:/admin/store/list";
@@ -81,6 +86,7 @@ public class StoreController {
 
     @RequestMapping("/addition")
     @RequiresPermissions("store-add")
+    @OperLogAnnotation(operType = "add-store:")
     public String addStore(Store store){
         storeService.addStore(store);
         return "redirect:/admin/store/list";

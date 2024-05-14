@@ -25,8 +25,8 @@
             $("#roleIds").focus();
             jQuery.validator.addMethod("isMobile", function (value, element) {
                 var length = value.length;
-                var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
-                return this.optional(element) || (length == 11 && mobile.test(value));
+                /*var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/*/;
+                return this.optional(element) || length === 11;
             }, "请正确填写手机号码");
 
             $("#storeForm").validate({
@@ -174,15 +174,15 @@
             <label class="col-sm-2 control-label">身份:</label>
             <div class="col-sm-5">
                 <input type="radio" name="identity" id="student"
-                       value="学生" ${user.identity == "学生"? "checked":""}> 学生&nbsp&nbsp
+                       value="ordinary" ${user.identity == "ordinary"? "checked":""}> 用户&nbsp&nbsp
                 <input type="radio" name="identity" id="teacher"
-                       value="教师" ${user.identity == "教师"? "checked":""}> 教师&nbsp&nbsp
+                       value="business" ${user.identity == "business"? "checked":""}> 商家&nbsp&nbsp
                 <input type="radio" name="identity" id="worker"
-                       value="上班族" ${user.identity == "上班族"? "checked":""}> 上班族&nbsp&nbsp
-                <input type="radio" name="identity" id="liberal"
+                       value="admin" ${user.identity == "admin"? "checked":""}> 其他&nbsp&nbsp
+                <%--<input type="radio" name="identity" id="liberal"
                        value="自由职业" ${user.identity == "自由职业"? "checked":""}> 自由职业&nbsp&nbsp
                 <input type="radio" name="identity" id="administrators"
-                       value="管理员" ${user.identity == "管理员"? "checked":""}> 系统管理员&nbsp&nbsp
+                       value="管理员" ${user.identity == "管理员"? "checked":""}> 系统管理员&nbsp&nbsp--%>
             </div>
             <span class="red"></span>
         </div>

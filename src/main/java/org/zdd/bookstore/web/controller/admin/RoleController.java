@@ -1,6 +1,7 @@
 package org.zdd.bookstore.web.controller.admin;
 
 import org.zdd.bookstore.common.pojo.BSResult;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.entity.Role;
 import org.zdd.bookstore.model.service.IRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,6 +24,7 @@ public class RoleController {
 
     @RequestMapping("/list")
     @RequiresPermissions("role-list")
+    @OperLogAnnotation(operType = "query-role-list:")
     public String roleList(Model model){
         List<Role> allRoles = roleService.findAllRoles();
         model.addAttribute("allRoles", allRoles);
@@ -31,6 +33,7 @@ public class RoleController {
 
     @RequestMapping("/echo/{roleId}")
     @RequiresPermissions("role-edit")
+    @OperLogAnnotation(operType = "edit-role:")
     public String toEdit(@PathVariable("roleId") int roleId, Model model){
 
         Role role = roleService.findById(roleId);
@@ -43,6 +46,7 @@ public class RoleController {
 
     @RequestMapping("/deletion/{roleId}")
     @RequiresPermissions("role-delete")
+    @OperLogAnnotation(operType = "delete-role:")
     public String deleteRole(@PathVariable("roleId")int roleId){
 
         roleService.deleteById(roleId);
@@ -58,6 +62,7 @@ public class RoleController {
 
     @RequestMapping("/addition")
     @RequiresPermissions("role-add")
+    @OperLogAnnotation(operType = "add-role:")
     public String addRole(Role role){
         roleService.addRole(role);
         return "forward:list";
@@ -65,6 +70,7 @@ public class RoleController {
 
     @RequestMapping("/edit")
     @RequiresPermissions("role-edit")
+    @OperLogAnnotation(operType = "edit-role:")
     public String updateRole(Role role,Model model){
         roleService.updateRole(role);
         model.addAttribute("saveMsg", "保存成功");

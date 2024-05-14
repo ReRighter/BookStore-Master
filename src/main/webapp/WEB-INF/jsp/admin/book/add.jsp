@@ -241,7 +241,7 @@
                 }*/
         var ue = UE.getEditor('bookDesc');
 
-        //对编辑器的操作最好在编辑器ready之后再做
+        //对编辑器的操作在编辑器ready之后再做
         ue.ready(function () {
             //设置编辑器的内容
             ue.setContent('在这里填写书籍详情');

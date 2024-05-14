@@ -83,7 +83,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion"
                        href="#collapseTwo">
-                        <span class="glyphicon glyphicon-cloud"></span> 云店铺
+                        <span class="glyphicon glyphicon-cloud"></span> 店铺管理
                     </a>
                 </h4>
             </div>

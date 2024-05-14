@@ -47,8 +47,8 @@
 
     <c:if test="${orderCustoms == null || empty orderCustoms}">
         <div class="row">
-            <h1 class="h1">亲，您还没有已提交的订单，<a href="">再逛一逛吧!</a></h1>
-            <img src="img/empty.png" alt="您暂时没有订单">
+            <h1 class="h1">您还没有已提交的订单</h1>
+            <%--<img src="img/empty.png" alt="您暂时没有订单">--%>
         </div>
     </c:if>
 

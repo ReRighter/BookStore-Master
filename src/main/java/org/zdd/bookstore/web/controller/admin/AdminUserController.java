@@ -1,6 +1,7 @@
 package org.zdd.bookstore.web.controller.admin;
 
 import org.zdd.bookstore.common.pojo.BSResult;
+import org.zdd.bookstore.common.utils.OperLogAnnotation;
 import org.zdd.bookstore.model.dao.custom.CustomMapper;
 import org.zdd.bookstore.model.entity.Role;
 import org.zdd.bookstore.model.entity.User;
@@ -44,6 +45,7 @@ public class AdminUserController {
 
     @RequestMapping("/update")
     @RequiresPermissions("user-edit")
+    @OperLogAnnotation(operType = "user-edit:")
     public String updateUser(User user, int[] roleIds, Model model){
         BSResult bsResult = userService.updateUser(user);
         if(bsResult.getCode() == 200){
@@ -56,6 +58,7 @@ public class AdminUserController {
 
     @RequestMapping("/addition")
     @RequiresPermissions("user-add")
+    @OperLogAnnotation(operType = "user-role-update:")
     public String addUser(User user, int[] roleIds){
         User userFromDB = userService.addUser(user);
         //更新用户角色的对应关系
@@ -65,6 +68,7 @@ public class AdminUserController {
 
     @RequestMapping("/deletion/{userId}")
     @RequiresPermissions("user-delete")
+    @OperLogAnnotation(operType = "user-delete:")
     public String delUser(@PathVariable("userId") int userId){
         userService.delUser(userId);
         return "forward:../list";
@@ -72,6 +76,7 @@ public class AdminUserController {
 
     @RequestMapping("/list")
     @RequiresPermissions("user-list")
+    @OperLogAnnotation(operType = "query-all-users:")
     public String userList(Model model){
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
