@@ -1,4 +1,4 @@
-package org.zdd.bookstore.pay;
+package org.zdd.bookstore.model.entity;
 
 import org.zdd.bookstore.model.entity.BookInfo;
 import org.zdd.bookstore.model.entity.Orders;

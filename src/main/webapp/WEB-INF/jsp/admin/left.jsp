@@ -122,9 +122,9 @@
                         <li>
                             <a href="admin/role/toAddition" target="centerFrame">添加角色</a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="admin/privilege/list" target="centerFrame">权限管理</a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </div>
             </div>

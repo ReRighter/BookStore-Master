@@ -44,7 +44,6 @@
         </div>
         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12" style="width: 65%;height: 100%;">
             <div id="myCarousel" class="carousel slide">
-                <!-- 轮播（Carousel）指标 -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0"
                         class="active"></li>
@@ -56,16 +55,16 @@
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="img/lunbo1.jpg" alt="First slide">
+                        <img src="img/pic1.jpg" alt="First slide">
                     </div>
                     <div class="item">
-                        <img src="img/lunbo2.jpg" alt="Second slide">
+                        <img src="img/pic2.jpg" alt="Second slide">
                     </div>
                     <div class="item">
-                        <img src="img/lunbo3.jpg" alt="Third slide">
+                        <img src="img/pic3.jpg" alt="Third slide">
                     </div>
                     <div class="item">
-                        <img src="img/lunbo4.jpg" alt="Fourth slide">
+                        <img src="img/pic4.jpg" alt="Fourth slide">
                     </div>
                   \
                 </div>

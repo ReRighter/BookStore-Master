@@ -4,7 +4,7 @@ import org.zdd.bookstore.common.pojo.BSResult;
 import org.zdd.bookstore.model.entity.custom.Cart;
 import org.zdd.bookstore.model.entity.User;
 import org.zdd.bookstore.model.entity.custom.OrderCustom;
-import org.zdd.bookstore.pay.PayContext;
+import org.zdd.bookstore.model.entity.PayContext;
 
 import java.util.List;
 

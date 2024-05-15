@@ -37,7 +37,7 @@
         <c:if test="${bookInfo == null}">
 
             <div id="success">
-                <span class="success_text">不好意思，添加到购物车失败！请重新尝试。</span>
+                <span class="success_text">添加到购物车失败！请重新尝试。</span>
             </div>
 
         </c:if>

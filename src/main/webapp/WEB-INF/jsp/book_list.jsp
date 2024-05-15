@@ -27,11 +27,7 @@
             <li>全部商品</li>
         </ul>
     </div>
-    <!--
-        作者：offline
-        时间：2018-10-28
-        描述：crumbs面包屑div
-    -->
+
     <div class="crumbs">
         <div>
             <a href="#">全部</a>
@@ -63,7 +59,7 @@
                             <span class="search_discount">&nbsp;(${bookInfo.discount}折) </span>
                         </p>
                         <p class="search_book_author">
-                            <span><a href="" title="程杰 著">${bookInfo.author}</a> 著</span>
+                            <span><a href="" title="">${bookInfo.author}</a> 著</span>
                             <span> /${bookInfo.publishDate}</span>
                             <span>  /<a href="" title="${bookInfo.press}">${bookInfo.press}</a></span>
                         </p>
@@ -94,18 +90,6 @@
                     <a href="book/list?keywords=${keywords}&cateId=${cateId}&page=${bookPageInfo.prePage}">前一页</a>
                 </li>
             </c:if>
-
-            <%--<c:forEach
-                    begin="${bookPageInfo.pageNum}"
-                    end="${bookPageInfo.pageNum+5 < bookPageInfo.pages ? bookPageInfo.pageNum+5 : bookPageInfo.pages }"
-                    var="current">
-                <li
-                        class="${(current == bookPageInfo.pageNum) ? 'active':''}">
-                    <a href="book/list?keyword=${keywords}&cateId=${cateId}&page=${current}">
-                        ${current}
-                    </a>
-                </li>
-            </c:forEach>--%>
             <c:forEach
                     begin="${bookPageInfo.pageNum < 6 ? 1 :bookPageInfo.pageNum-5}"
                     end="${bookPageInfo.pages<6?bookPageInfo.pages:(bookPageInfo.pageNum < 6 ? 6 :bookPageInfo.pageNum) }"

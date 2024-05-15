@@ -77,18 +77,6 @@
                 <li id="${bookCat.cateId}"><a href="index/category/${bookCat.cateId}">${bookCat.name}</a></li>
             </c:forEach>
 
-            <%--<li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    文学 <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">童书</a></li>
-                    <li><a href="#">教辅</a></li>
-                    <li><a href="#">EJB</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">分离的链接</a></li>
-                </ul>
-            </li>--%>
         </ul>
     </div>
 </div>

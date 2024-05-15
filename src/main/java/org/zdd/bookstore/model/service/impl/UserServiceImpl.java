@@ -150,8 +150,6 @@ public class UserServiceImpl implements IUserService {
             //分配角色
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getUserId());
-            userRole.setCreated(new Date());
-            userRole.setUpdated(new Date());
             if (userResourceProperties.getOrdinaryCustomer().equals(user.getIdentity())) {
                 //普通用户
                 userRole.setRoleId(Integer.parseInt(ordinaryRole));

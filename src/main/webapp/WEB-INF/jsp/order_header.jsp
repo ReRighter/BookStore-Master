@@ -18,13 +18,10 @@
     <!--
         订单头部
     -->
-    <div class="row" style="padding-left: 100px;">
-        <img src="img/2018102616575937187.jpg" alt="广告"/>
-    </div>
+
     <div class="row orderheader">
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 img_div">
-            <a href="index.html" target="_blank"><img src="img/dd.jpg" width="90%" alt="dd.com"
-                                                      style="margin-top: 20px"/></a>
+            <a href="index.html" target="_blank">book-store</a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 order_text_div">
             <span class="order_text_span">填写订单</span>

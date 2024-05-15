@@ -180,7 +180,7 @@
                 <thead>
                 <tr id="table_head">
                     <th width="10%">
-                        <input type="checkbox" class="select_all" checked/>店铺全选
+                        <%--<input type="checkbox" class="select_all" checked/>店铺全选--%>
                     </th>
                     <th width="30%">商品信息</th>
                     <th width="10%">单价（元）</th>
@@ -193,12 +193,10 @@
                 <tbody>
                 <tr class="shop_intro">
                     <td class="tcol1">
-                        <input type="checkbox" class="select_all_oneShop" checked/>
-                        <span>全选</span>
+                        <%--<input type="checkbox" class="select_all_oneShop" checked/>
+                        <span>全选</span>--%>
                     </td>
-                    <td>
-                        <span>dd(店铺)</span>
-                    </td>
+
                     <td></td>
                     <td></td>
                     <td></td>

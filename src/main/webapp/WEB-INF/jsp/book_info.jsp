@@ -212,14 +212,7 @@
                         </div>
 
 
-                        <div id="feature" class="section">
-                            <div class="title">
-                                <span class="title_span">产品特色</span>
-                            </div>
-                            <p>
-                                ${empty bookDesc.bookDesc?"<img src='book/book3_1.jpg'>":bookDesc.bookDesc}
-                            </p>
-                        </div>
+
                         <div class="abstract" class="section">
                             <div class="title">
                                 <span class="title_span">作者简介</span>
@@ -228,20 +221,11 @@
                                 <pre>${bookInfo.author}</pre>
                             </blockquote>
                         </div>
-                        <%--<div class="content" class="section">
-                            <div class="title">
-                                <span class="title_span">目　　录</span>
-                            </div>
-                            <blockquote>
-                                <pre>${bookInfo.catalog}</pre>
-                            </blockquote>
-                        </div>--%>
+
 
                     </div>
                 </div>
-                <%--<div id="book_comment_content" style="display: none;" class="nav_content">
-                    商品评论
-                </div>--%>
+
             </div>
         </div>
 

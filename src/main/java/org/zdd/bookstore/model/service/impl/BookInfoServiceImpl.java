@@ -12,8 +12,10 @@ import org.zdd.bookstore.model.dao.BookCategoryMapper;
 import org.zdd.bookstore.model.dao.BookDescMapper;
 import org.zdd.bookstore.model.dao.BookInfoMapper;
 import org.zdd.bookstore.model.dao.custom.CustomMapper;
+import org.zdd.bookstore.model.entity.BookCategory;
 import org.zdd.bookstore.model.entity.BookDesc;
 import org.zdd.bookstore.model.entity.BookInfo;
+import org.zdd.bookstore.model.service.IBookCateService;
 import org.zdd.bookstore.model.service.IBookInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -28,6 +30,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +50,8 @@ public class BookInfoServiceImpl implements IBookInfoService {
     private BookCategoryMapper categoryMapper;
     @Autowired
     private CustomMapper customMapper;
+    @Autowired
+    private IBookCateService cateService;
 
 
     @Override
@@ -65,12 +70,17 @@ public class BookInfoServiceImpl implements IBookInfoService {
     }
     @Override
     public List<BookInfo> getRecommendBooks(int userId, int currentPage, int pageSize){
-        PageHelper.startPage(currentPage, pageSize);
+        PageHelper.startPage(currentPage, 6);
         Example bookInfoExample = new Example(BookInfo.class);
         Example.Criteria criteria = bookInfoExample.createCriteria();
         List<Integer> recommendCate = new ArrayList<Integer>();
-        recommendCate.add( customMapper.findMostPurchaseCateByUserId(userId).get(0));
-        recommendCate.add( customMapper.findMostViewCategoryByUserId(userId).get(0));
+        try {
+            recommendCate.add(customMapper.findMostPurchaseCateByUserId(userId).get(0));
+            recommendCate.add(customMapper.findMostViewCategoryByUserId(userId).get(0));
+        }catch (Exception e){
+            List<BookCategory> categoryList = cateService.getCategoryList();
+            return findBookListByCateId(categoryList.get(new Random().nextInt(6)).getCateId(), new Random().nextInt(3), pageSize);
+        }
         criteria.andIn("bookCategoryId",recommendCate);
         List<BookInfo> books = bookInfoMapper.selectByExample(bookInfoExample);
         PageInfo<BookInfo> pageInfo = new PageInfo<>(books);

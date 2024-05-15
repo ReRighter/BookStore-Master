@@ -15,11 +15,7 @@ public class UserRole {
     @Column(name = "role_id")
     private Integer roleId;
 
-    @Column(name = "created")
-    private Date created;
 
-    @Column(name = "updated")
-    private Date updated;
 
     /**
      * @return user_id
@@ -49,31 +45,5 @@ public class UserRole {
         this.roleId = roleId;
     }
 
-    /**
-     * @return created
-     */
-    public Date getCreated() {
-        return created;
-    }
 
-    /**
-     * @param created
-     */
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    /**
-     * @return updated
-     */
-    public Date getUpdated() {
-        return updated;
-    }
-
-    /**
-     * @param updated
-     */
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 }

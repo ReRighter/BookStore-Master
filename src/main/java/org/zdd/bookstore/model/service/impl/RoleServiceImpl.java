@@ -49,8 +49,6 @@ public class RoleServiceImpl implements IRoleService {
                 UserRole userRole = new UserRole();
                 userRole.setUserId(userId);
                 userRole.setRoleId(roleId);
-                userRole.setCreated(new Date());
-                userRole.setUpdated(new Date());
                 userRoleMapper.insert(userRole);
             }
         }

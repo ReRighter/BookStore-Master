@@ -5,8 +5,7 @@ import org.zdd.bookstore.model.entity.BookInfo;
 import org.zdd.bookstore.model.entity.Orders;
 import org.zdd.bookstore.model.service.IOrderDetailService;
 import org.zdd.bookstore.model.service.IOrderService;
-import org.zdd.bookstore.pay.Alipay;
-import org.zdd.bookstore.pay.PayContext;
+import org.zdd.bookstore.model.entity.PayContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +19,7 @@ import java.util.List;
 @RequestMapping("/payment")
 public class PayController {
 
-    @Autowired
-    private Alipay alipay;
+
 
     @Autowired
     private IOrderService orderService;
@@ -43,13 +41,13 @@ public class PayController {
         payContext.setOrders(order);
         payContext.setBookInfos(books);
 
-        try {
+        /*try {
             alipay.pay(payContext);
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("exception", "支付出错了!");
             return "exception";
-        }
+        }*/
         return "pay_success";
     }
 

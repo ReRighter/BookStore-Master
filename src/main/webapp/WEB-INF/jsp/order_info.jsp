@@ -133,11 +133,7 @@
                 </span>
             </p>
         </div>
-        <!--
-            作者：offline
-            时间：2018-10-28
-            描述：支付方式
-        -->
+
         <div class="row" id="payment">
             <h1 class="title order_title">支付方式</h1>
             <dl>
@@ -151,11 +147,7 @@
             </dl>
         </div>
 
-        <!--
-            作者：offline
-            时间：2018-10-28
-            描述：去支付
-        -->
+
         <div class="row" id="to_paid_div">
             <div id="to_paid_info">
                 共<span class="red">2</span>件商品

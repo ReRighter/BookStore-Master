@@ -9,7 +9,6 @@ import org.zdd.bookstore.model.entity.LogoutRecord;
 import org.zdd.bookstore.model.entity.Store;
 import org.zdd.bookstore.model.entity.User;
 import org.zdd.bookstore.model.service.ILoginRecordService;
-import org.zdd.bookstore.model.service.IMailService;
 import org.zdd.bookstore.model.service.IStoreService;
 import org.zdd.bookstore.model.service.IUserService;
 import org.apache.shiro.SecurityUtils;
@@ -41,8 +40,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @Autowired
-    private IMailService mailService;
 
     @Autowired
     private IStoreService storeService;
@@ -50,12 +47,6 @@ public class UserController {
     private ILoginRecordService loginRecordService;
     @Autowired
     private LogoutRecordImpl logoutRecord;
-
-    @Value("${mail.fromMail.addr}")
-    private String from;
-
-    @Value("${my.ip}")
-    private String ip;
 
     private final String USERNAME_PASSWORD_NOT_MATCH = "用户名或密码错误";
 
@@ -126,36 +117,6 @@ public class UserController {
         return "user_info";
     }
 
-    /* @RequestMapping("/login1")
-     public String login1(@RequestParam(value = "username", required = false) String username,
-                          @RequestParam(value = "password", required = false) String password,
-                          Model model, HttpServletRequest request) {
-
-         if (StringUtils.isEmpty(username)) {
-             model.addAttribute("loginMsg", USERNAME_CANNOT_NULL);
-             return "login";
-         }
-
-         if (StringUtils.isEmpty(password)) {
-             model.addAttribute("loginMsg", "密码不能为空");
-             return "login";
-         }
-
-         BSResult<User> bsResult = userService.login(username, password);
-         //登录校验失败
-         if (bsResult.getData() == null) {
-             model.addAttribute("loginMsg", bsResult.getMessage());
-             return "login";
-         }
-
-         //登录校验成功，重定向到首页
-         User user = bsResult.getData();
-         //置密码为空
-         user.setPassword("");
-         request.getSession().setAttribute("user", user);
-         return "redirect:/";
-     }
-     */
     //shiro框架帮我们注销
     @RequestMapping("/logout")
     @CacheEvict(cacheNames="authorizationCache",allEntries = true)
@@ -199,22 +160,11 @@ public class UserController {
 
         BSResult isExist = checkUserExist(user.getUsername());
 
-        //尽管前台页面已经用ajax判断用户名是否存在，
-        // 为了防止用户不是点击前台按钮提交表单造成的错误，后台也需要判断
         if ((Boolean) isExist.getData()) {
 
             BSResult bsResult = userService.saveUser(user);
-            //获得未激活的用户
+
             User userNotActive = (User) bsResult.getData();
-            /*try {
-                mailService.sendHtmlMail(user.getEmail(), "<dd书城>---用户激活---",
-                        "<html><body><a href='http://"+ip+"/user/active?activeCode=" + userNotActive.getCode() + "'>亲爱的" + user.getUsername() +
-                                "，请您点击此链接前往激活</a></body></html>");
-            } catch (Exception e) {
-                e.printStackTrace();
-                model.addAttribute("registerError", "发送邮件异常！请检查您输入的邮箱地址是否正确。");
-                return "fail";
-            }*/
             model.addAttribute("username", user.getUsername());
             return "register_success";
         } else {

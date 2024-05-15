@@ -24,12 +24,6 @@
         <div id="success">
             <span class="success_text">支付成功！</span>
         </div>
-        <div class="things">
-            <p>
-                <span>支付金额</span>
-                <span class="red">${total_amount}元</span>
-            </p>
-        </div>
     </div>
     <div class="next_div">
         <a href="" class="toShopping">继续购物</a>

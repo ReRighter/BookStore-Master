@@ -19,12 +19,10 @@
     <!--
         购物车头部
     -->
-    <div class="row" style="padding-left: 100px;">
-        <img src="img/2018102616575937187.jpg" alt="广告"/>
-    </div>
+
     <div class="row cartheader">
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 img_div">
-            <a href="index.html" target="_blank"><img src="img/dd.jpg" width="90%" alt="dd.com"/></a>
+            <a href="index.html" target="_blank">book-store</a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 cart_text_div">
             <span class="cart_text_span">购物车</span>

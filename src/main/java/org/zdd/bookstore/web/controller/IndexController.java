@@ -1,8 +1,6 @@
 package org.zdd.bookstore.web.controller;
 
 
-import org.zdd.bookstore.crawl.URLEntity;
-import org.zdd.bookstore.crawl.WriteToMysql;
 import org.zdd.bookstore.model.entity.BookCategory;
 import org.zdd.bookstore.model.entity.BookInfo;
 import org.zdd.bookstore.model.service.IBookCateService;
@@ -31,9 +29,6 @@ public class IndexController {
 
     @Autowired
     private IBookCateService cateService;
-
-    @Autowired
-    private WriteToMysql writeToMysql;
 
     @Value("${book.category}")
     private String BOOK_CATEGORY;
@@ -84,7 +79,7 @@ public class IndexController {
      * @throws ParseException
      * @throws SQLException
      */
-    @PostMapping("/write")
+   /* @PostMapping("/write")
     public void write(String url) throws IOException, ParseException, SQLException {
         HttpClient httpclient = new DefaultHttpClient(); //创建HttpClient
         //先去书籍列表页列表页
@@ -92,5 +87,5 @@ public class IndexController {
         //mysql_control.executeInsert(books);  //数据库添加数据
 
         writeToMysql.executeInsert(books);
-    }
+    }*/
 }

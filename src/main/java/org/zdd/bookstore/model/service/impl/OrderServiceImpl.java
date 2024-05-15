@@ -13,11 +13,10 @@ import org.zdd.bookstore.model.entity.custom.CartItem;
 import org.zdd.bookstore.model.dao.custom.CustomMapper;
 import org.zdd.bookstore.model.entity.custom.OrderCustom;
 import org.zdd.bookstore.model.service.IOrderService;
-import org.zdd.bookstore.pay.PayContext;
+import org.zdd.bookstore.model.entity.PayContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zdd.bookstore.model.entity.*;
 import tk.mybatis.mapper.entity.Example;
 
 import java.math.BigDecimal;
